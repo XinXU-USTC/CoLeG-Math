@@ -4,14 +4,11 @@ from dataclasses import dataclass, field
 
 @dataclass
 class LLMArguments:
-    llm: str = field(
+    model: str = field(
         default="gpt-3.5-turbo-0125", metadata={"help": "The Large Language Model to be accessed."}
     )
     temperature: float = field(
         default=1.0, metadata={"help": "The temperature of LLM."}
-    )
-    top_k: int = field(
-        default=10, metadata={"help": "The top_k of LLM."}
     )
     top_p: float = field(
         default=0.7, metadata={"help": "The top_p of LLM."}
@@ -52,10 +49,6 @@ class DataArguments:
         default="",
         metadata={"help": "The file path to save responses in."}
     )
-    number_extraction_output_filepath: str = field(
-        default="",
-        metadata={"help": "The file path to save responses of number extraction in."}
-    )
 
     @classmethod
     def from_dict(cls, config: dict):
@@ -67,9 +60,6 @@ class DataArguments:
 
 @dataclass
 class RunningArguments:
-    num_threads: int = field(
-        default=1, metadata={"help": "Number of threads used while querying LLM. Defaults to 1."}
-    )
     generate_log_file: bool = field(
         default=False, metadata={"help": "Determine if generates a log file or not."}
     )

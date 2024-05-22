@@ -28,11 +28,27 @@ For now, E-GSM and our SFT data are under `./data` forder. Huggingface Link: com
 ## Evaluation on E-GSM
 For proprietary LLMs, you need to put your key in `proprietary-llms/api_keys.py`
 ```bash
-bash scripts/xxx
+cd proprietary-llms
+python3 main.py config.yaml
 ```
 or
 ```bash
-python xx
+cd proprietary-llms
+bash ../scripts/eval_proprietary.sh
+```
+or
+```bash
+python3 main.py \
+    --llm gpt-3.5-turbo-0125 \
+    --n 1 \
+    --top_p 0.7 \
+    --temperature 0.0 \
+    --max_tokens 1024 \
+    --prompt_name zero-shot-cot \
+    --generate_log_file \
+    --use_core_instruction \
+    --dataset_filepath /path/to/datafile \
+    --output_filepath /path/to/save
 ```
 For opensource LLMs:
 ```bash

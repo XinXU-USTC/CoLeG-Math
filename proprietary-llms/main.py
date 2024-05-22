@@ -1,11 +1,12 @@
 import os
 import sys
 import json
+from dataclasses import asdict
 from prompt_generator import PromptGenerator
 from openai_runner import query
-from arguments import EntireArguments, DataArguments, RunningArguments
+from arguments import EntireArguments, LLMArguments, DataArguments, RunningArguments
 from data_processor import (
-    load_gsm8k_dataset,
+    load_dataset,
 )
 from transformers import HfArgumentParser
 from omegaconf import OmegaConf
@@ -31,7 +32,7 @@ def main():
 
     data_args = DataArguments.from_dict(arguments)
     running_args = RunningArguments.from_dict(arguments)
-    dataset = load_gsm8k_dataset(data_args)
+    dataset = load_dataset(data_args)
 
     if len(dataset) == 0:
         print("There is no data need to be run. Experiment finished.")
@@ -42,15 +43,11 @@ def main():
     prompt_generator = PromptGenerator(data_args, running_args)
     prompt_template = prompt_generator.prompt_template
 
-    gen_kwargs = {
-        "n": 1,
-        "temperature": 0.0,
-        "top_k": 0.7,
-    }
+    gen_kwargs = asdict(LLMArguments.from_dict(arguments))
     with open(arguments.output_filepath, "w", encoding="utf-8") as fout:
         for item in dataset:
             prompt = prompt_template.format(question=item['question'])
-            response = query(prompt=prompt, model='gpt-3.5-turbo-0125', **gen_kwargs)
+            response = query(prompt=prompt, **gen_kwargs)
             resp_item = {
                 "id": item['id'],
                 "response": response,
