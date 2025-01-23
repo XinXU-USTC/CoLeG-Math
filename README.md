@@ -14,7 +14,7 @@
 Clone CoLeG-Math and install the required packages:
 
 ```bash
-git clone xxx
+git clone https://github.com/XinXU-USTC/CoLeG-Math.git
 cd CoLeG-Math
 pip install -r requirements.txt
 ```
