@@ -4,7 +4,7 @@
 [![E-GSM License](https://img.shields.io/badge/E--GSM%20License-MIT-yellow.svg)](https://lbesson.mit-license.org/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
 
-- Official code repository for paper "Can LLMs Solve Longer Math Word Problems Better?"
+- Official code repository for paper [Can LLMs Solve Longer Math Word Problems Better?](https://arxiv.org/abs/2405.14804)
 - **E**xtended **G**rade-**S**chool **M**ath (**E-GSM**) benchmark is an arithmetic reasoning dataset built upon GSM8K, by extending problem descriptions into longer ones.
 - E-GSM is constructed to evaluate **Co**ntext **Le**ngth **G**eneralizability (**CoLeG**) of LLMs, the ability of LLMs to solve long math word problems.
 - For proprietary LLMs, we introduce **Co**ndition-**Re**trieving Instruction (CoRe), an instructional prompt.
@@ -71,5 +71,10 @@ Thanks for the open source code of [MetaMath](https://github.com/meta-math/MetaM
 
 Please cite our paper if you use our dataset or extend our work:
 ```bibtex
-coming soon
+@article{xu2024coleg-math,
+  title={Can LLMs Solve longer Math Word Problems Better?},
+  author={Xu, Xin and Xiao, Tong and Chao, Zitong and Huang, Zhenya and Yang, Can and Wang, Yang},
+  journal={arXiv preprint arXiv:2405.14804},
+  year={2024}
+}
 ```
